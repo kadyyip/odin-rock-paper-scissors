@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock, Paper, Scissors</title>
+    </head>
+
+    <body>
+        <script>
+            function getComputerChoice() {
+                let choices = ["Rock", "Paper", "Scissors"];
+                let choiceInd = getRandomInt(3);
+                return choices[choiceInd];
+            }
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            }
+
+            function capitalizePlayerSelection(playerSelection) {
+                let firstChar = playerSelection[0]
+                let restOfStr = playerSelection.substr(1, playerSelection.length);
+                return firstChar.toUpperCase() + restOfStr.toLowerCase();
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                playerSelection = capitalizePlayerSelection(playerSelection);
+
+                if ((computerSelection === "Rock" && playerSelection === "Scissors") || 
+                (computerSelection === "Paper" && playerSelection === "Rock") ||
+                (computerSelection === "Scissors" && playerSelection === "Paper")) {
+                    return `You lose! ${computerSelection} beats ${playerSelection}.`;
+                } else if ((playerSelection === "Rock" && computerSelection === "Scissors") ||
+                (playerSelection === "Paper" && computerSelection === "Rock") ||
+                (playerSelection === "Scissors" && computerSelection === "Paper")) {
+                    return `You win! ${playerSelection} beats ${computerSelection}.`;
+                } else {
+                    return `It's a tie! You both played ${computerSelection}.`;
+                }
+            }
+
+            function isValidSelection(playerSelection) {
+                let choices = ["Rock", "Paper", "Scissors"];
+                playerSelection = capitalizePlayerSelection(playerSelection);
+                return choices.includes(playerSelection);
+            }
+
+            function game() {
+                let numPlayerWins = 0;
+                let numComputerWins = 0;
+                for (let i = 0; i < 5; i++) {
+                    let playerSelection = prompt("Rock, Paper, or Scissors?");
+                    if (!isValidSelection(playerSelection)) {
+                        console.log("Invalid selection! Please pick Rock, Paper, or Scissors");
+                        i--;
+                        continue;
+                    }
+                    let computerSelection = getComputerChoice();
+                    let outcome = playRound(playerSelection, computerSelection);
+                    console.log(outcome);
+                    if (outcome.startsWith("You win")) {
+                        numPlayerWins++;
+                    } else if (outcome.startsWith("You lose")) {
+                        numComputerWins++;
+                    } else {
+                        numComputerWins++;
+                        numPlayerWins++;
+                    }
+                }
+                return getOverallWinner(numPlayerWins, numComputerWins);
+            }
+            
+            function getOverallWinner(numPlayerWins, numComputerWins) {
+                if (numPlayerWins > numComputerWins) {
+                    return "Congratulations, you win!";
+                } else if (numComputerWins > numPlayerWins) {
+                    return "Sorry, you lose!";
+                } else {
+                    return "It's a tie!";
+                }
+            }
+            console.log(game());
+        </script>
+    </body>
+</html>
