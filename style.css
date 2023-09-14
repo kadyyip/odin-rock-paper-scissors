@@ -1,0 +1,63 @@
+* {
+    font-family: Roboto, sans-serif;
+    color: #0f2445;
+    font-size: 24px;
+}
+
+body {
+    background-color: #b7cdf1;
+}
+
+h1, h2, .results, .score, .winner {
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+
+.winner {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+img {
+    width: 200px;
+    height: auto;
+}
+
+img:hover {
+    transform: scale(1.1)
+}
+
+.choices {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 20px 0px;
+}
+
+button {
+    background-color: #0f2445;
+    color: #b7cdf1;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 25px;
+}
+
+.play-again {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.round {
+    text-align: center;
+}
